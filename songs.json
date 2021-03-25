@@ -1,88 +1,76 @@
 [
-
 {
 	"artist": "Tom Petty",
 	"title": "Free Fallin'",
 	"genre": ["Classic Rock", ""],
 	"year": "1989",
 },
-
 {
 	"artist": "Tom Petty",
 	"title": "American Girl",
 	"genre": ["Classic Rock", ""],
 	"year": "1976",
 },
-
 {
 	"artist": "Elvis Costello &amp; The Attractions",
 	"title": "Everyday I Write The Boook",
 	"genre": ["New Wave", "post-punk"],
 	"year": "1983",
 },
-
 {
 	"artist": "Elvis Costello",
 	"title": "Watching The Detectives",
 	"genre": ["Rock", ""],
 	"year": "1977",
 },
-
 {
 	"artist": "Elvis Costello",
 	"title": "Alison",
 	"genre": ["New wave", ""],
 	"year": "1977",
 },
-
 {
 	"artist": "Joe Jackson",
 	"title": "Sunday Papers",
 	"genre": ["Alternative", ""],
 	"year": "1979",
 },
-
 {
 	"artist": "Joe Jackson",
 	"title": "Steppin' Out",
 	"genre": ["Pop", ""],
 	"year": "1982",
 },
-
 {
 	"artist": "Earth, Wind & Fire",
 	"title": "September",
 	"genre": ["Disco", ""],
 	"year": "1978",
 },
-
 {
 	"artist": "Joe Jackson",
 	"title": "It's Different For Girls",
 	"genre": ["New Wave", ""],
 	"year": "1979",
 },
-
 {
 	"artist": "Earth, Wind &amp; Fire",
 	"title": "Let's Groove",
 	"genre": ["Funk", ""],
 	"year": "1981",
 },
-
 {
 	"artist": "George Strait",
 	"title": "I Got a Car",
 	"genre": ["Contemporary country", ""],
 	"year": "2013",
 },
-
 {
 	"artist": "Zac Brown Band",
 	"title": "Cold Hearted",
 	"genre": ["Country", ""],
 	"year": "2010",
 },
-	]
+]
 
 
