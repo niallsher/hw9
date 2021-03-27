@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Song List</title>
+	<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+	<!-- <script language="javascript" src="songs.json"></script> -->
+	<style>
+
+		#demo {
+			height: 80px;
+		}
+		ul li {
+			list-style-type: none;
+		}
+
+	</style>
+</head>
+
+<body>
+	<h2><STRONG>PART 2:</STRONG> Serialized String</h2>
+	<div id="serialized">&nbsp;</div><br />
+
+	<h2><STRONG>PART 3:</STRONG> Friendly Format</h2>
+	<div id="table"></div><br />
+
+	<h2><STRONG>PART 4:</STRONG> Specific Genre</h2>
+	<div id="d_form">
+		<form id="gen_form">
+			<label for="genres">Choose a Genre:</label>
+			<select id="genres">
+				<option value="Classic Rock">Classic Rock</option>
+				<option value="New Wave">New Wave</option>
+				<option value="Post-punk">Post-punk</option>
+				<option value="Rock">Rock</option>
+				<option value="Alternative">Alternative</option>
+				<option value="Pop">Pop</option>
+				<option value="Disco">Disco</option>
+				<option value="Funk">Funk</option>
+				<option value="Country">Country</option>
+			</select>
+			<button type="button" onclick="filter()">Filter</button>
+		</form>
+
+	</div><br /><br />
+
+	<div id="filter_table"> </div><br />
+
+
+
+
+	<script language="javascript">
+
+		$(document).ready(function() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					str = "<div id='string'>" + this.responseText + "</div><br />";
+					// document.getElementById("demo").innerHTML = this.responseText;
+					// document.writeln(str);
+					document.getElementById("serialized").innerHTML = str;
+					// 
+					// alert();
+					var data = document.getElementById("string").innerHTML;
+					// alert(data);
+					data = JSON.parse(data);
+					song_list = data;
+					// alert(data);
+
+					// alert(JSON.stringify(data));
+
+					// alert(document.getElementById("genres").selected);
+					tablestr = "<br />";
+					data.forEach(function(song) {
+						tablestr += "<ul style='list-style-type: none;'><li>" + song.title + "</li>"
+								 + "<li>" + "Artist(s): ";
+						for (var i = 0; i < song.artist.length; i++) {
+							tablestr += song.artist[i];
+							if (i != 0 && i != (song.artist.length - 1)) {
+								tablestr += ", ";
+							}
+						}
+						tablestr += "</li>" + "<li>" + "genre(s): <ul>";
+						for (var i = 0; i < song.genre.length; i++) {
+
+					 		tablestr += "<li>" + song.genre[i] + "</li>";
+
+						}
+						tablestr += "</ul></li>"
+
+								 + "<li>" + "Year: " + song.year + "</li>"
+
+
+								 + "</ul><br />";
+
+						});
+					document.getElementById("table").innerHTML = tablestr;
+				}
+			};
+
+			xhttp.open("GET", "http://niallsher.github.io/hw9/songs.json", true);
+			xhttp.send();
+
+			// next();
+		});
+
+
+		// alert(song_list);
+		function filter()
+		{
+
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					// str = "<div id='string'>" + this.responseText + "</div><br />";
+					// document.getElementById("demo").innerHTML = this.responseText;
+					// document.writeln(str);
+					// document.getElementById("serialized").innerHTML = str;
+					// 
+					// alert();
+					// var data = document.getElementById("string").innerHTML;
+					var data = this.responseText;
+					// alert(data);
+					data = JSON.parse(data);
+					// song_list = data;
+					// alert(data);
+
+					// alert(JSON.stringify(data));
+					selected_genre = document.getElementById("genres").value;
+
+
+					tablestr = "<br />";
+					data.forEach(function(song) {
+						// tablestr += "<ul style='list-style-type: none;'>";
+						for (var i = 0; i < song.genre.length; i++) {
+							if (song.genre[i] == selected_genre) {
+								tablestr += "<ul style='list-style-type: none;'>";
+					 		
+								tablestr += song.title + "</li>"
+								 + "<li>" + "Artist(s): " + song.artist + "</li>" 
+								 + "<li>" + "genre(s): <ul>";
+								for (var i = 0; i < song.genre.length; i++) {
+
+							 		tablestr += "<li>" + song.genre[i] + "</li>";
+
+								}
+								tablestr += "</ul></li>"
+
+										 + "<li>" + "Year: " + song.year + "</li>"
+
+
+										 + "</ul><br />";
+							}
+
+						}
+						// tablestr += "<ul style='list-style-type: none;'>" 
+
+						// song.title + "</li>"
+						// 		 + "<li>" + "Artist(s): " + song.artist + "</li>" 
+						// 		 + "<li>" + "genre(s): <ul>";
+						// for (var i = 0; i < song.genre.length; i++) {
+
+					 // 		tablestr += "<li>" + song.genre[i] + "</li>";
+
+						// }
+						// tablestr += "</ul></li>"
+
+						// 		 + "<li>" + "Year: " + song.year + "</li>"
+
+
+						// 		 + "</ul><br />";
+
+						});
+					document.getElementById("filter_table").innerHTML = tablestr;
+				}
+			};
+
+			xhttp.open("GET", "http://niallsher.github.io/hw9/songs.json", true);
+			xhttp.send();
+
+			// alert(JSON.stringify(song_list));
+
+			// var data = document.getElementById("demo");
+			// alert(data);
+
+			// data = JSON.parse(data);
+			// alert(JSON.stringify(data));
+		// var data = document.getElementById("demo").;
+		// alert(JSON.stringify(data));
+
+		// xhttp.open("GET", "http://niallsher.github.io/hw9/songs.json", true);
+		// xhttp.send();
+
+	// $.get("http://niallsher.github.io/hw9/songs.json", function( data ) {
+	// 	document.write("hello");
+	// 	str = JSON.stringify(data);
+	// 	document.write(str + "<br /> hi");
+
+	// })
+
+
+		// data = JSON.stringify(document.getElementById("demo").innerHTML);
+		// data = JSON.parse(data);
+		// alert(data);
+		// tablestr = "<br />";
+		// data.forEach(function(song) {
+		// 	tablestr += "<ul><li>" + song.title + "</li>"
+		// 			 + "<li>" + "Artist(s): " + song.artist + "</li>";
+
+		// });
+		// document.body.appendChild(tablestr);
+	}
+	</script>
+</body>
+</html>
